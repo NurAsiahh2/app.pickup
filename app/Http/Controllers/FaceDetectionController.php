@@ -16,7 +16,9 @@ class FaceDetectionController extends Controller
         $students = Student::all();
         $classes = Kelas::all();
         $pickups = Pickup::all();
-        $faceDetections = FaceDetection::with('student', 'kelas', 'pickup')->paginate(10);
+        $faceDetections = FaceDetection::with(['pickup', 'student.kelas'])
+        ->latest()
+        ->paginate(5); 
         return view('FaceDetection', compact('faceDetections', 'students', 'classes', 'pickups'));
     }
 
@@ -29,16 +31,10 @@ class FaceDetectionController extends Controller
             'photo' => 'required',
         ]);
     
-        // Ambil data Base64 dari request
     $photoData = $request->photo;
-
-    // Hapus header base64 (data:image/png;base64,)
     $photoData = preg_replace('/^data:image\/\w+;base64,/', '', $photoData);
 
-    // Decode base64 ke binary
     $photoBinary = base64_decode($photoData);
-
-    // Cek apakah decoding berhasil
     if (!$photoBinary) {
         return response()->json([
             'success' => false,
@@ -46,19 +42,15 @@ class FaceDetectionController extends Controller
         ]);
     }
 
-    // Buat nama unik untuk gambar
     $fileName = 'face_' . time() . '.png';
-
-    // Simpan gambar ke storage Laravel (storage/app/public/faces)
     $filePath = 'faces/' . $fileName;
     Storage::disk('public')->put($filePath, $photoBinary);
 
-    // Simpan path gambar ke database
     $faceDetection = FaceDetection::create([
         'student_id' => $request->student_id,
         'class_id' => $request->class_id,
         'pickup_id' => $request->pickup_id,
-        'photo' => $filePath, // Simpan path file, bukan binary
+        'photo' => $filePath, 
     ]);
 
     return response()->json([
@@ -67,4 +59,27 @@ class FaceDetectionController extends Controller
         'photo_url' => asset('storage/' . $filePath),
     ]);
    }
+
+    public function destroy($id)
+    {
+        $faceDetection = FaceDetection::find($id);
+
+        if (!$faceDetection) {
+            return response()->json([
+                    'success' => false,
+                    'message' => 'Data tidak ditemukan.',
+            ]);
+        }
+
+        // Delete the photo from storage
+        Storage::disk('public')->delete($faceDetection->photo);
+
+        // Delete the face detection record
+        $faceDetection->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data berhasil dihapus.',
+        ]);
+    }
 }

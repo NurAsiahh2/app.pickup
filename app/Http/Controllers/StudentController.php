@@ -12,7 +12,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with(['kelas', 'school'])->paginate(20);
+        $students = Student::with(['kelas', 'school'])->get();
         $classes = Kelas::all();
         $schools = School::all();
         return view('admin.students.index', compact('students', 'classes', 'schools'));
@@ -26,7 +26,7 @@ class StudentController extends Controller
     }
 
     public function store(Request $request)
-{
+    {
     try {
         $validated = $request->validate([
             'name' => 'required|string|max:255',

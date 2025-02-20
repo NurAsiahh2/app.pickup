@@ -14,7 +14,14 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
 // Home Page Route
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return view('home.index');
+})->name('home');
+
+Route::get('/get-pickups', function () {
+    $pickups = Pickup::all(); 
+    return response()->json($pickups);
+});
 
 // Authentication Routes
 Route::middleware(['guest'])->group(function () {
@@ -35,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
     // ... routes lainnya
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/FaceDetection', [FaceDetectionController::class, 'index'])->name('FaceDetection');
     Route::post('/FaceDetection/store', [FaceDetectionController::class, 'store'])->name('FaceDetection.store');
@@ -44,7 +51,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('classes', KelasController::class);
     Route::resource('schools', SchoolController::class);
     Route::resource('pickups', PickupController::class);
-    
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+
 });

@@ -10,7 +10,7 @@
             height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/school-bg.jpg');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/img/backgroundhomesiswago.jpg');
             background-size: cover;
         }
         .login-box {
@@ -27,7 +27,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="login-box">
                         <div class="text-center mb-4">
-                            <img src="/images/logo.png" alt="Logo" height="60">
+                            <img src="/img/logo.jpg" alt="Logo" height="60">
                             <h4 class="mt-2">Login</h4>
                         </div>
 

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Penjemput Sekolah</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Aplikasi Penjemput</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +13,7 @@
     <!-- Custom CSS -->
     <style>
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/school-bg.jpg');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/backgroundhomesiswago.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -28,6 +29,11 @@
         .feature-card:hover {
             transform: translateY(-10px);
         }
+
+        .hero-logo {
+            width: 150px; /* Sesuaikan ukuran gambar */
+            margin-bottom: 20px; /* Jarak antara gambar dan teks */
+        }
     </style>
 </head>
 <body>
@@ -35,7 +41,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="/images/logo.png" alt="Logo" height="40">
+                <img src="/img/logo.jpg" alt="Logo" height="40">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -56,23 +62,12 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container text-center">
-            <h1 class="display-4">Selamat Datang di Aplikasi Penjemput Sekolah</h1>
+            <!-- Gambar di belakang teks -->
+            <h1 class="display-4 text-with-background">Selamat Datang di Aplikasi Penjemput Sekolah</h1>
             <p class="lead">Solusi aman dan terpercaya untuk penjemputan siswa di sekolah</p>
             <a href="{{ route('register') }}" class="btn btn-primary btn-lg">Mulai Sekarang</a>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>2025 © Yayasan Asrama Pelajar Islam.</h5>
-                    <p>Solusi modern untuk sistem penjemputan siswa</p>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

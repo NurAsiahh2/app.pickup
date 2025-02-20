@@ -10,7 +10,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/school-bg.jpg');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/img/backgroundhomesiswago.jpg');
             background-size: cover;
             padding: 2rem 0;
         }
@@ -28,7 +28,7 @@
                 <div class="col-md-8 col-lg-6">
                     <div class="register-box">
                         <div class="text-center mb-4">
-                            <img src="/images/logo.png" alt="Logo" height="60">
+                            <img src="/img/logo.jpg" alt="Logo" height="60">
                             <h4 class="mt-2">Register</h4>
                         </div>
 

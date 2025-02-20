@@ -21,23 +21,19 @@ class Student extends Model
         'student_image' 
     ];
 
-    public function kelas()
-    {
+    public function kelas(){
         return $this->belongsTo(Kelas::class, 'class_id'); 
     }
 
-    public function school()
-    {
+    public function school(){
         return $this->belongsTo(School::class); 
     }
 
-    public function pickups ()
-    {
+    public function pickups (){
         return $this->hasMany(Pickup::class);
     }
 
-    public function faceDetections()
-    {
+    public function faceDetections(){
         return $this->hasMany(FaceDetection::class, 'student_id'); // Sesuaikan 'student_id' dengan foreign key
     }
 }

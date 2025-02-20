@@ -15,7 +15,9 @@ class DashboardController extends Controller
         $totalStudents = Student::count(); 
         $totalPickups = Pickup::count(); 
         $totalClasses = Kelas::count();
-        $faceDetections = FaceDetection::with('student', 'kelas', 'pickup')->paginate(10);
+        $faceDetections = FaceDetection::with(['pickup', 'student.kelas'])
+        ->latest()
+        ->paginate(5);
         return view('dashboard', compact('totalStudents', 'totalPickups', 'totalClasses', 'faceDetections')); // Pastikan file Blade ini ada
     }
 }

@@ -11,7 +11,7 @@ class SchoolController extends Controller
 {
     public function index()
     {
-        $schools = School::paginate(5);
+        $schools = School::all();
         return view('admin.schools.index', compact('schools'));
     }
 
@@ -20,8 +20,7 @@ class SchoolController extends Controller
         return view('schools.create');
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
@@ -30,19 +29,7 @@ class SchoolController extends Controller
         return redirect()->route('schools.index')->with('success', 'Sekolah berhasil ditambahkan.');
     }
 
-    public function show(School $school)
-    {
-        $school = School::with('classes')->findOrFail($school->id);
-        return view('admin.schools.show', compact('school'));
-    }
-
-    public function edit(School $school)
-    {
-        return view('schools.edit', compact('school'));
-    }
-
-    public function update(Request $request, School $school)
-    {
+    public function update(Request $request, School $school){
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
@@ -50,9 +37,18 @@ class SchoolController extends Controller
         $school->update($request->all());
         return redirect()->route('schools.index')->with('success', 'Sekolah berhasil diperbarui.');
     }
+    
+    public function show(School $school){
+        $school = School::with('classes')->findOrFail($school->id);
+        return view('admin.schools.show', compact('school'));
+    }
 
-    public function destroy(School $school)
-    {
+    public function edit(School $school){
+        return view('schools.edit', compact('school'));
+    }
+
+
+    public function destroy(School $school){
         $school->delete();
         return redirect()->route('schools.index')->with('success', 'Sekolah berhasil dihapus.');
     }
