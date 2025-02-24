@@ -46,6 +46,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/FaceDetection', [FaceDetectionController::class, 'index'])->name('FaceDetection');
     Route::post('/FaceDetection/store', [FaceDetectionController::class, 'store'])->name('FaceDetection.store');
+    Route::delete('/FaceDetection/{faceDetection}', [FaceDetectionController::class, 'destroy'])->name('FaceDetection.destroy');
+   
     
     Route::resource('students', StudentController::class);
     Route::resource('classes', KelasController::class);

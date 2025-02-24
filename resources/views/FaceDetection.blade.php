@@ -96,9 +96,11 @@
                                 <td class="text-center">{{ $detection->created_at->format('d/m/Y') }}</td>
                                 <td class="text-center">{{ $detection->created_at->format('H:i:s') }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-danger btn-sm" onclick="deleteFaceDetection({{ $detection->id }})">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                                    <form action="{{ route('FaceDetection.destroy', $detection->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?');"><i class="bi bi-x-circle"></i></button>
+                                      </form>
                                 </td>
                             </tr>
                         @endforeach

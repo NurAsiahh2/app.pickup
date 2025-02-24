@@ -31,7 +31,7 @@
     <h1 class="h3 mb-0 text-gray-800">Daftar Siswa</h1>
      <div id="export_buttons"></div>
     <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#modalCreate">
-      Tambah Kelas
+      Tambah Siswa
     </button>
   </div>
 
@@ -180,11 +180,11 @@
 <!-- Modal Create -->
 <div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="{{ route('classes.store') }}" method="post">
+    <form action="{{ route('students.store') }}" method="post">
     @csrf
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kelas</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Siswa</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -224,7 +224,7 @@
           </div>
           <div class="mb-3">
             <label for="nama_orangtua" class="form-label">Nama Orang Tua</label>
-            <input type="file" class="form-control" id="nama_orangtua" name="nama_orangtua" value="{{ $student->nama_orangtua }}" required>
+            <input type="text" class="form-control" id="nama_orangtua" name="nama_orangtua" value="{{ $student->nama_orangtua }}" required>
           </div>
           <div class="mb-3">
             <label for="kontak_orangtua" class="form-label">Kontak Orang Tua</label>

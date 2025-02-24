@@ -10,7 +10,7 @@
 
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Data Sekolah</h1>
+    <h1 class="h3 mb-0 text-gray-800">Daftar Sekolah</h1>
     <div id="export_buttons"></div>
     <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#createModal">
       Tambah Sekolah
@@ -80,8 +80,8 @@
                               </div>
                           </div>
                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                              <button type="submit" class="btn btn-primary">Update</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Edit</button>
                           </div>
                         </div>
                         </form>
@@ -113,7 +113,7 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Simpan</button>
       </div>
     </div>

@@ -60,26 +60,15 @@ class FaceDetectionController extends Controller
     ]);
    }
 
-    public function destroy($id)
-    {
-        $faceDetection = FaceDetection::find($id);
-
-        if (!$faceDetection) {
-            return response()->json([
-                    'success' => false,
-                    'message' => 'Data tidak ditemukan.',
-            ]);
-        }
-
-        // Delete the photo from storage
-        Storage::disk('public')->delete($faceDetection->photo);
-
-        // Delete the face detection record
-        $faceDetection->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data berhasil dihapus.',
-        ]);
-    }
+   public function destroy(FaceDetection $faceDetection)
+   { 
+       if ($faceDetection->faces) {
+           Storage::disk('public')->delete($faceDetection->faces);
+       }
+   
+       $faceDetection->delete();
+   
+       return redirect()->route('FaceDetection')->with('success', 'Data face detection berhasil dihapus.');
+   }
+   
 }

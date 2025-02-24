@@ -96,7 +96,7 @@ class StudentController extends Controller
     }
 
     public function destroy(Student $student)
-    {
+    { 
         if ($student->student_image) {
             Storage::disk('public')->delete($student->student_image);
         }
